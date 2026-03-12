@@ -1,5 +1,7 @@
-import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject, Inject } from '@angular/core';
 import { TasksService } from '../tasks.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-new-task',
@@ -9,24 +11,37 @@ import { TasksService } from '../tasks.service';
 export class NewTaskComponent {
   @Input({ required: true }) userId!: string;
   @Output() close = new EventEmitter<void>();
-  enteredTitle = '';
-  enteredSummary = '';
-  enteredDate = '';
+
   private tasksService = inject(TasksService);
+  formVariable: FormGroup
+
+  constructor(
+    private fb: FormBuilder,
+    private dialogRef: MatDialogRef<NewTaskComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: { userId: string }
+  ) {
+    this.formVariable = this.fb.group({
+      title: '',
+      summary: '',
+      dueDate: ''
+    })
+  }
+
 
   onCancel() {
-    this.close.emit();
+    this.dialogRef.close();
   }
 
   onSubmit() {
     this.tasksService.addTask(
       {
-        title: this.enteredTitle,
-        summary: this.enteredSummary,
-        date: this.enteredDate,
+        title: this.formVariable.value.title,
+        summary: this.formVariable.value.summary,
+        date: this.formVariable.value.dueDate,
       },
-      this.userId
+      this.data.userId
     );
     this.close.emit();
+    this.dialogRef.close();
   }
 }

@@ -11,6 +11,7 @@ import { UserComponent } from './user/user.component';
 import { HeaderComponent } from './header/header.component';
 import { CardComponent } from './shared/card/card.component';
 import { TasksModule } from './tasks/tasks.module';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [AppComponent, UserComponent, HeaderComponent],
@@ -23,8 +24,9 @@ import { TasksModule } from './tasks/tasks.module';
     MatInputModule,
     MatIconModule,
     MatButtonModule,
-    TasksModule,
     CardComponent,
+    TasksModule,
+    MatDialogModule
   ],
 })
 export class AppModule {}

@@ -1,35 +1,26 @@
-<div class="backdrop" (click)="onCancel()"></div>
-<dialog open>
   <h2>Add Task</h2>
-  <form (ngSubmit)="onSubmit()">
-    <p>
-      <label for="title">Title</label>
-      <input type="text" id="title" name="title" [(ngModel)]="enteredTitle" />
-    </p>
+  <form [formGroup]="formVariable" (submit) = "onSubmit()">
 
-    <p>
-      <label for="summary">Summary</label>
-      <textarea
-        id="summary"
-        rows="5"
-        name="summary"
-        [(ngModel)]="enteredSummary"
-      ></textarea>
-    </p>
+    <mat-form-field appearance="outline">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title">
+    </mat-form-field>
 
-    <p>
-      <label for="due-date">Due Date</label>
-      <input
-        type="date"
-        id="due-date"
-        name="due-date"
-        [(ngModel)]="enteredDate"
-      />
-    </p>
+    <mat-form-field appearance="outline">
+      <mat-label>Summary</mat-label>
+      <input matInput formControlName="summary">
+    </mat-form-field>
 
-    <p class="actions">
-      <button type="button" (click)="onCancel()">Cancel</button>
-      <button type="submit">Create</button>
-    </p>
+    <mat-form-field appearance="outline">
+      <mat-label>Due Date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="dueDate">
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+  
+    <div class="actions">
+      <button mat-stroked-button type="button" (click)="onCancel()">Cancel</button>
+      <button mat-raised-button color="primary" type="submit">Create</button>
+    </div>
   </form>
-</dialog>
