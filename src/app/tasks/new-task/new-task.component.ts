@@ -19,14 +19,14 @@ export class NewTaskComponent {
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<NewTaskComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { userId: string }
-  ) {
+  )
+   {
     this.formVariable = this.fb.group({
-      title: '',
-      summary: '',
-      dueDate: ''
+      title: [null],
+      summary: [null],
+      dueDate: []
     })
   }
-
 
   onCancel() {
     this.dialogRef.close();

@@ -1,17 +1,17 @@
   <h2>Add Task</h2>
   <form [formGroup]="formVariable" (submit) = "onSubmit()">
 
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline" subscriptSizing="dynamic">
       <mat-label>Title</mat-label>
       <input matInput formControlName="title">
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline" subscriptSizing="dynamic">
       <mat-label>Summary</mat-label>
       <input matInput formControlName="summary">
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline" subscriptSizing="dynamic">
       <mat-label>Due Date</mat-label>
       <input matInput [matDatepicker]="picker" formControlName="dueDate">
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>

@@ -3,14 +3,20 @@
 <main>
   <ul id="users">
     <li id="search">
-      <mat-form-field appearance="outline">
+      <mat-form-field appearance="outline" subscriptSizing="dynamic">
         <mat-label>Search</mat-label>
         <input matInput [(ngModel)]="searchQuery" />
         <button *ngIf="searchQuery" matSuffix mat-icon-button (click)="searchQuery = ''">
           <mat-icon>close</mat-icon>
         </button>
-        <mat-icon *ngIf="!searchQuery" matSuffix>search</mat-icon>
+        <mat-icon matSuffix>search</mat-icon>
       </mat-form-field>
+    </li>
+    <li>
+      <button mat-raised-button color="primary" (click)="openDialog()">
+        <mat-icon>add</mat-icon>
+        Create New
+      </button>
     </li>
     @for (user of users; track user.id) {
     <li>
