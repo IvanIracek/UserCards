@@ -39,7 +39,11 @@ export class TasksService {
   }
 
   getUserTasks(userId: string) {
-    return this.tasks.filter((task) => task.userId === userId);
+    return this.tasks.filter(task => task.userId === userId);
+  }
+
+  searchTasksByTitle(title: string) {
+    return this.tasks.filter(task => task.title.toLowerCase().includes(title.toLowerCase()));
   }
 
   addTask(taskData: NewTaskData, userId: string) {

@@ -5,8 +5,8 @@
     <li id="search">
       <mat-form-field appearance="outline" subscriptSizing="dynamic">
         <mat-label>Search</mat-label>
-        <input matInput [(ngModel)]="searchQuery" />
-        <button *ngIf="searchQuery" matSuffix mat-icon-button (click)="searchQuery = ''">
+        <input matInput [formControl]="searchQuery" />
+        <button *ngIf="searchQuery.value" matSuffix mat-icon-button (click)="searchQuery.reset()">
           <mat-icon>close</mat-icon>
         </button>
         <mat-icon matSuffix>search</mat-icon>
@@ -26,7 +26,9 @@
   </ul>
 
   @if (selectedUser) {
-  <app-tasks [userId]="selectedUser.id" [name]="selectedUser.name" />
+  <app-tasks [userId]="selectedUser.id" [name]="selectedUser.name" [searchQuery]="search"/>
+  } @else if (search) {
+  <app-tasks [name]="'Search Results'" [searchQuery]="search"/>
   } @else {
   <p id="fallback">Select a user to see their tasks!</p>
   }

@@ -5,6 +5,7 @@ import { UserComponent } from './user/user.component';
 import { MatDialog } from '@angular/material/dialog'
 import { NewUserComponent } from './user/new-user/new-user.component';
 import { UserService } from './user/user.service'
+import { FormControl } from '@angular/forms'
 
 @Component({
   selector: 'app-root',
@@ -14,14 +15,15 @@ import { UserService } from './user/user.service'
 export class AppComponent {
   users = this.userService.getAllUsers
   selectedUserId?: string;
-  searchQuery?: string;
+  searchQuery = new FormControl('')
+  search: string | null = null
 
   constructor(
     private dialog: MatDialog,
-    private userService: UserService) {
+    private userService: UserService,
+  ) {
+      this.searchQuery.valueChanges.subscribe(data => this.search = data)
   }
-
-
 
   openDialog() {
     let dialogRef = this.dialog.open(NewUserComponent)
@@ -32,14 +34,10 @@ export class AppComponent {
   }
 
   get selectedUser() {
-    this.searchQuery.valueChange.subscribe(result => {
-
-    })
     return this.users.find((user) => user.id === this.selectedUserId);
   }
 
   onSelectUser(id: string) {
     this.selectedUserId = id;
   }
-
-  
+}

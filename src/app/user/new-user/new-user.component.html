@@ -1,6 +1,5 @@
 <form [formGroup]="userForm" (submit)="onSubmit()">
 
-    <!-- First Name -->
     <mat-form-field appearance="outline">
         <mat-label>First Name</mat-label>
         <input matInput formControlName="firstName" />
@@ -9,7 +8,6 @@
         </mat-error>
     </mat-form-field>
 
-    <!-- Last Name -->
     <mat-form-field appearance="outline">
         <mat-label>Last Name</mat-label>
         <input matInput formControlName="lastName"  />
@@ -18,7 +16,6 @@
         </mat-error>
             </mat-form-field>
 
-    <!-- Email -->
     <mat-form-field appearance="outline">
         <mat-label>Email</mat-label>
         <input matInput formControlName="email" type="email" />
